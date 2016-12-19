@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            #textToRead {
+                width: 400px;
+                height: 200px;
+            }
+
+            #highlighterBlock {
+                width: 400px;
+            }
+
+            #highlighterBlock > pre {
+                white-space: normal;
+                text-align: justify;
+            }
+
+            #highlighter {
+                color: darkred;
+                opacity: 0.4;
+            }
+        </style>
+    </head>
+    <body>
+        <div><textarea id="textToRead"></textarea></div>
+        <input id="read" type="button" value="Read!">
+        <div id="highlighterBlock">
+            <pre></pre>
+        </div>
+
+        <script>
+            var readButton = document.querySelector("#read");
+
+            readButton.onclick = function () {
+                var textToRead = document.querySelector("#textToRead").value;
+                var highlighter = document.querySelector("#highlighterBlock > pre");
+
+                var offset = 0;
+
+                var highlighterInterval = setInterval(function() {
+                    if(textToRead.indexOf(" ", offset), offset < textToRead.indexOf(" ", offset)) {
+                        highlighter.innerHTML = selector(textToRead, offset);
+                        offset = textToRead.indexOf(" ", offset) + 1;
+                    } else {
+                        clearInterval(highlighterInterval);
+                        console.log("stop");
+                    }
+                }, 250);
+
+                function selector(s, offset) {
+                    return "<span id='highlighter'>" + s.substring(0, s.indexOf(" ", offset)) + "</span>" + s.substring(s.indexOf(" ", offset + 1));
+                }
+            };
+            
+        </script>
+    </body>
+</html>
